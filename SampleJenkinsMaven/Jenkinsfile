@@ -1,0 +1,32 @@
+pipeline {
+    agent any 
+    tools { 
+        maven 'Maven' 
+        jdk 'Java' 
+    }
+    stages {
+        stage('Clone git and clean') { 
+            steps {
+                dir("${env.WORKSPACE}/JenkinsMaven/SampleJenkinsMaven"){
+                    bat "mvn clean"
+                }
+                    
+            }
+        }
+        stage('Test') { 
+            steps {
+                dir("${env.WORKSPACE}/JenkinsMaven/SampleJenkinsMaven"){
+                    bat "mvn test"
+                }
+            }
+        }
+        stage('Deploy') { 
+            steps {
+               dir("${env.WORKSPACE}/JenkinsMaven/SampleJenkinsMaven"){
+                    bat "mvn package"
+                }
+            }
+        }
+        
+    }
+}
