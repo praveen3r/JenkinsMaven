@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Clone git and clean') { 
             steps {
-                dir("${env.WORKSPACE}/JenkinsMaven/SampleJenkinsMaven"){
+                dir("${env.WORKSPACE}/SampleJenkinsMaven"){
                     bat "mvn clean"
                 }
                     
@@ -15,14 +15,14 @@ pipeline {
         }
         stage('Test') { 
             steps {
-                dir("${env.WORKSPACE}/JenkinsMaven/SampleJenkinsMaven"){
+                dir("${env.WORKSPACE}/SampleJenkinsMaven"){
                     bat "mvn test"
                 }
             }
         }
         stage('Deploy') { 
             steps {
-               dir("${env.WORKSPACE}/JenkinsMaven/SampleJenkinsMaven"){
+               dir("${env.WORKSPACE}/SampleJenkinsMaven"){
                     bat "mvn package"
                 }
             }
